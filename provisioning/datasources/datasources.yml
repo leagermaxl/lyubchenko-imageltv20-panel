@@ -1,0 +1,10 @@
+apiVersion: 1
+
+datasources:
+  - name: TestData DB
+    type: testdata
+    uid: trlxrdZVk
+    isDefault: true
+  - name: StaticD
+    type: marcusolsson-static-datasource
+    uid: U0HP2Rv4z
