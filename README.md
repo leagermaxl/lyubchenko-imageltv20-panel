@@ -1,7 +1,7 @@
 # Imagelt_v2.0 Panel Plugin for Grafana
 
 Allows a user to superimpose measurement displays ontop of a picture.
-![ImageIt](https://ibb.co/nkT0GLY)
+![ImageIt](https://github.com/leagermaxl/lyubchenko-imageltv20-panel/blob/main/src/img/imageit_example.png)
 
 ## Setup
 
