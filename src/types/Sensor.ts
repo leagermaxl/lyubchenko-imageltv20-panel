@@ -1,24 +1,26 @@
+// Оголошення типу Sensor для опису сенсора
 type Sensor = {
-  visible: boolean;
-  name: string;
+  visible: boolean; // Видимість сенсора
+  name: string; // Назва сенсора
   query: {
-    id: string;
-    alias: string;
+    id: string; // Ідентифікатор запиту
+    alias: string; // Псевдонім запиту
   };
-  backgroundColor: string;
-  fontColor: string;
-  bold: boolean;
-  valueBlink: boolean;
-  iconName: string;
-  backgroundBlink: boolean;
-  link: string;
+  backgroundColor: string; // Колір фону сенсора
+  fontColor: string; // Колір шрифту сенсора
+  bold: boolean; // Жирний шрифт
+  valueBlink: boolean; // Миготіння значення
+  iconName: string; // Ім'я іконки
+  backgroundBlink: boolean; // Миготіння фону
+  link: string; // Посилання, пов'язане з сенсором
   position: {
-    x: number;
-    y: number;
+    x: number; // Позиція сенсора по осі X
+    y: number; // Позиція сенсора по осі Y
   };
-  mappingIds: string[];
-  unit: string | undefined;
-  decimals: number;
+  mappingIds: string[]; // Масив ідентифікаторів маппінгів
+  unit: string | undefined; // Одиниця вимірювання
+  decimals: number; // Кількість десяткових знаків
 };
 
+// Експорт типу Sensor за замовчуванням
 export default Sensor;

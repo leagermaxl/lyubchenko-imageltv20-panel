@@ -1,9 +1,10 @@
 import React from 'react';
 
-// Can be used to display current color
+// Компонент використовується для відображення поточного кольору
 export const ColorDot = (props: { color: string }) => {
   return (
     <div
+      // Стилі для відображення кольорової точки
       style={{
         height: '10px',
         width: '10px',

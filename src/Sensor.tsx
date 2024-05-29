@@ -10,58 +10,65 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { useStyles2 } from '@grafana/ui';
 
+// Визначення типу властивостей компонента Sensor
 type Props = {
-  sensor: SensorType;
-  mappings: Mapping[];
-  draggable: boolean;
-  iconName: IconName;
-  index: number;
-  link: string;
-  name: string;
+  sensor: SensorType; // Об'єкт сенсора
+  mappings: Mapping[]; // Мапінги
+  draggable: boolean; // Можливість перетягування сенсора
+  iconName: IconName; // Назва іконки
+  index: number; // Індекс сенсора в масиві
+  link: string; // Посилання
+  name: string; // Ім'я сенсора
   imageDimensions: {
     width: number;
     height: number;
-  };
-  onPositionChange: Function;
-  value: any | undefined;
+  }; // Розміри зображення
+  onPositionChange: Function; // Функція для зміни позиції сенсора
+  value: any | undefined; // Значення сенсора
 };
 
+// Функція для переведення пікселів в відсотки
 const pxToPerc = (px: number, size: number): number => {
   return (px * 100) / size;
 };
 
+// Функція для переведення відсотків в пікселі
 const percToPx = (perc: number, size: number): number => {
   return (perc * size) / 100;
 };
 
+// Компонент Sensor
 export const Sensor: React.FC<Props> = (props: Props) => {
-  // const theme = useTheme();
+  // Деструктуризація пропсів
   const { draggable, imageDimensions, onPositionChange, index, iconName, link, name, mappings } = props;
   let sensor = clone(props.sensor) as SensorType & Mapping['values'];
   let value = clone(props.value);
 
-  const styles = useStyles2(getStyles);
+  const styles = useStyles2(getStyles); // Використовуємо кастомні стилі
 
   const [isMouseOver, setIsMouseOver] = useState(false);
 
+  // Обробник завершення перетягування сенсора
   const onDragStop = (_event: DraggableEvent, data: DraggableData) => {
     const newPosition: SensorType['position'] = {
-      x: pxToPerc(data.x, imageDimensions.width),
-      y: pxToPerc(data.y, imageDimensions.height),
+      x: pxToPerc(data.x, imageDimensions.width), // Перетворення пікселів в відсотки
+      y: pxToPerc(data.y, imageDimensions.height), // Перетворення пікселів в відсотки
     };
 
-    onPositionChange(newPosition, index);
+    onPositionChange(newPosition, index); // Виклик функції для зміни позиції сенсора
   };
 
+  // Позиція сенсора
   const sensorPosition: ControlPosition = {
-    x: percToPx(sensor.position.x, imageDimensions.width),
-    y: percToPx(sensor.position.y, imageDimensions.height),
+    x: percToPx(sensor.position.x, imageDimensions.width), // Перетворення відсотків в пікселі
+    y: percToPx(sensor.position.y, imageDimensions.height), // Перетворення відсотків в пікселі
   };
 
+  // Цикл по мапінгам
   for (let mapping of mappings) {
     const mappingOperator = MappingOperators.find((mappingOperator) => mapping.operator === mappingOperator.id);
 
-    // Apply mapping function if it satisfies requirements
+    // Застосування функції мапінгу, якщо вона виконує вимоги
     const isOverrode = mappingOperator?.function(value, mapping.compareTo);
 
     if (isOverrode) {
@@ -69,12 +76,12 @@ export const Sensor: React.FC<Props> = (props: Props) => {
       value = mapping.values.overrideValue ? mapping.values.overrideValue : value;
 
       delete sensor.overrideValue;
-      // Stop at first valid mapping
+      // Зупинка при першому дійсному мапінгу
       break;
     }
   }
 
-  // Get and apply unit type formatter
+  // Отримання і застосування форматувальника одиниць виміру
   const { unit } = sensor;
 
   const valueFormatter = getValueFormat(unit);
@@ -99,11 +106,11 @@ export const Sensor: React.FC<Props> = (props: Props) => {
               css`
                 color: ${sensor.fontColor};
                 background-color: ${sensor.backgroundColor};
-              `,
-              sensor.backgroundBlink && styles.blink
+              `, // Колір тексту та фону
+              sensor.backgroundBlink && styles.blink // Блимання фону
             )}
-            onMouseEnter={() => setIsMouseOver(true)}
-            onMouseLeave={() => setIsMouseOver(false)}
+            onMouseEnter={() => setIsMouseOver(true)} // Обробник входу миші
+            onMouseLeave={() => setIsMouseOver(false)} // Обробник виходу миші
           >
             <div className={cx(styles.content)}>
               <a
@@ -115,11 +122,13 @@ export const Sensor: React.FC<Props> = (props: Props) => {
                 {iconName && <FontAwesomeIcon icon={iconName} />}
                 <div className={cx(styles.name)}>{name}</div>
                 <div className={cx(styles.value, sensor.valueBlink && styles.blink, sensor.bold && styles.bold)}>
+                  {/* Значення сенсора, з блиманням та жирним шрифтом, якщо встановлено */}
                   {formattedValueString}
                 </div>
               </a>
             </div>
 
+            {/* Відображення ручки для перетягування, якщо це дозволено та мишка над сенсором */}
             {!draggable && isMouseOver && (
               <div className={cx(styles.handle, 'handle')}>
                 <div className="fa fa-bars" />
@@ -132,12 +141,14 @@ export const Sensor: React.FC<Props> = (props: Props) => {
   );
 };
 
+// Анімація блимання
 const blink = keyframes`
   50% {
     opacity: 0;
   }
 `;
 
+// Функція для отримання стилів на основі теми Grafana
 const getStyles = (theme: GrafanaTheme2) => {
   return {
     container: css`
