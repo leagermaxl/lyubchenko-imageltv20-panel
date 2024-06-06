@@ -3,11 +3,11 @@ import { css } from '@emotion/css';
 import { Button, useStyles2 } from '@grafana/ui';
 import { GrafanaTheme2, SelectableValue, StandardEditorProps } from '@grafana/data';
 import { EditorMappingItem } from './EditorMappingItem';
-import { Mapping } from 'types/Mapping';
+import { MappingType } from 'types/MappingType';
 import MappingOperators from 'MappingOperators';
 
 // Інтерфейс Props для компоненту EditorMappingList
-interface Props extends StandardEditorProps<Mapping[]> {}
+interface Props extends StandardEditorProps<MappingType[]> {}
 
 // Функція для генерації випадкового ID
 const getRandomID = function () {
@@ -31,7 +31,7 @@ export const EditorMappingList: React.FC<Props> = (props: Props) => {
   const styles = useStyles2(getStyles); // Використання стилів
 
   // Значення за замовчуванням для нового маппінгу
-  const defaultNewMapping: Mapping = {
+  const defaultNewMapping: MappingType = {
     id: getRandomID(), // Випадковий ID
     description: '', // Опис за замовчуванням
     compareTo: 0, // Число для порівняння за замовчуванням
@@ -49,7 +49,7 @@ export const EditorMappingList: React.FC<Props> = (props: Props) => {
   };
 
   // Функція для обробки змін маппінгу
-  const onMappingChange = (mapping: Mapping, index: number) => {
+  const onMappingChange = (mapping: MappingType, index: number) => {
     mappings[index] = mapping; // Оновлюємо маппінг
 
     onChange(mappings); // Викликаємо onChange з оновленими маппінгами
@@ -73,7 +73,7 @@ export const EditorMappingList: React.FC<Props> = (props: Props) => {
     <>
       {/* список існуючих маппінгів */}
       {mappings &&
-        mappings.map((mapping: Mapping, index: number) => {
+        mappings.map((mapping: MappingType, index: number) => {
           return (
             <div className={styles.mappingItemWrapper} key={index}>
               <EditorMappingItem

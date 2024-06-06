@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { clone, merge } from 'lodash';
 import { css, cx, keyframes } from '@emotion/css';
 import Draggable, { DraggableEvent, DraggableData, ControlPosition } from 'react-draggable';
-import SensorType from './types/Sensor';
+import SensorType from './types/SensorType';
 import MappingOperators from 'MappingOperators';
-import { Mapping } from 'types/Mapping';
+import { MappingType } from 'types/MappingType';
 import { GrafanaTheme2, formattedValueToString, getValueFormat } from '@grafana/data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
@@ -13,7 +13,7 @@ import { useStyles2 } from '@grafana/ui';
 // Визначення типу властивостей компонента Sensor
 type Props = {
   sensor: SensorType; // Об'єкт сенсора
-  mappings: Mapping[]; // Мапінги
+  mappings: MappingType[]; // Мапінги
   draggable: boolean; // Можливість перетягування сенсора
   iconName: IconName; // Назва іконки
   index: number; // Індекс сенсора в масиві
@@ -41,7 +41,7 @@ const percToPx = (perc: number, size: number): number => {
 export const Sensor: React.FC<Props> = (props: Props) => {
   // Деструктуризація пропсів
   const { draggable, imageDimensions, onPositionChange, index, iconName, link, name, mappings } = props;
-  let sensor = clone(props.sensor) as SensorType & Mapping['values'];
+  let sensor = clone(props.sensor) as SensorType & MappingType['values'];
   let value = clone(props.value);
 
   const styles = useStyles2(getStyles); // Використовуємо кастомні стилі

@@ -1,4 +1,4 @@
-import { MappingOperator } from './types/Mapping';
+import { MappingOperator } from './types/MappingType';
 
 // Функція для перевірки рівності двох значень (чисел або рядків)
 function isEqualTo(a: number | string, b: number | string) {

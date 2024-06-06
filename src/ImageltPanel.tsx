@@ -6,8 +6,8 @@ import { uniqueId, cloneDeep } from 'lodash';
 // import { stylesFactory, useTheme } from '@grafana/ui';
 import { useTheme2, useStyles2 } from '@grafana/ui';
 import { Sensor } from './Sensor';
-import { Mapping } from './types/Mapping';
-import SensorType from './types/Sensor';
+import { MappingType } from './types/MappingType';
+import SensorType from './types/SensorType';
 import { IconName, library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
@@ -104,9 +104,9 @@ export const ImageltPanel: React.FC<Props> = ({
             }
 
             // Отримання мапінгів по ідентифікаторам
-            const sensorMappings: Mapping[] = sensor.mappingIds
-              .map((mappingId) => mappings.find((mapping: Mapping) => mappingId === mapping.id))
-              .filter((mapping) => typeof mapping !== 'undefined') as Mapping[];
+            const sensorMappings: MappingType[] = sensor.mappingIds
+              .map((mappingId) => mappings.find((mapping: MappingType) => mappingId === mapping.id))
+              .filter((mapping) => typeof mapping !== 'undefined') as MappingType[];
 
             return (
               <Sensor

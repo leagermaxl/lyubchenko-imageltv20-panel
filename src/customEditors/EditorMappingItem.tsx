@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Field, HorizontalGroup, IconButton, Select, TextArea, ColorPicker, Button, Switch } from '@grafana/ui';
-import { Mapping } from '../types/Mapping';
+import { MappingType } from '../types/MappingType';
 import { SelectableValue } from '@grafana/data';
 
 import { produce } from 'immer';
@@ -8,9 +8,9 @@ import { ColorDot } from 'components/ColorDot';
 
 // Інтерфейс Props для компоненту EditorMappingItem
 interface Props {
-  mapping: Mapping; // Маппінг, який ми редагуємо
+  mapping: MappingType; // Маппінг, який ми редагуємо
   operatorsOptions: SelectableValue[]; // Опції для вибору оператора
-  onChange: (mapping: Mapping, index: number) => void; // Функція для обробки змін маппінгу
+  onChange: (mapping: MappingType, index: number) => void; // Функція для обробки змін маппінгу
   onDelete: (index: number) => void; // Функція для видалення маппінгу
   index: number; // Індекс маппінгу в масиві маппінгів
 }
@@ -20,7 +20,7 @@ export const EditorMappingItem: React.FC<Props> = (props: Props) => {
   const { mapping, index, operatorsOptions, onChange, onDelete } = props; // Деструктуризація пропсів
 
   // Функція для оновлення маппінгу
-  function updateMapping(draftState: (draftMapping: Mapping) => void) {
+  function updateMapping(draftState: (draftMapping: MappingType) => void) {
     const updatedMapping = produce(mapping, draftState); // Використовуємо produce для оновлення маппінгу
 
     onChange(updatedMapping, index); // Викликаємо onChange з оновленим маппінгом і його індексом
@@ -31,7 +31,7 @@ export const EditorMappingItem: React.FC<Props> = (props: Props) => {
       {/* Відображення номера маппінгу з кнопкою для видалення */}
       <HorizontalGroup>
         Mapping {index + 1}
-        <IconButton aria-label="qwe" name="trash-alt" size="sm" onClick={() => onDelete(index)} />
+        <IconButton aria-label="map" name="trash-alt" size="sm" onClick={() => onDelete(index)} />
       </HorizontalGroup>
 
       {/* Поле для введення ID маппінгу */}

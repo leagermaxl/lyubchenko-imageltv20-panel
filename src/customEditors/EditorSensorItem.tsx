@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, ColorPicker, Switch, Field, HorizontalGroup, IconButton, UnitPicker, Button } from '@grafana/ui';
-import Sensor from '../types/Sensor';
+import SensorType from '../types/SensorType';
 
 import { produce } from 'immer';
 import { ColorDot } from 'components/ColorDot';
@@ -8,8 +8,8 @@ import { MappingsInput } from 'components/MappingsInput';
 
 // Оголошуємо інтерфейс Props для компоненту EditorSensorItem
 interface Props {
-  sensor: Sensor; // Сенсор, який ми редагуємо
-  onChange: (sensor: Sensor, index: number) => void; // Функція для обробки змін сенсора
+  sensor: SensorType; // Сенсор, який ми редагуємо
+  onChange: (sensor: SensorType, index: number) => void; // Функція для обробки змін сенсора
   onDelete: (index: number) => void; // Функція для видалення сенсора
   index: number; // Індекс сенсора в масиві сенсорів
 }
@@ -19,7 +19,7 @@ export const EditorSensorItem: React.FC<Props> = (props: Props) => {
   const { sensor, index, onChange, onDelete } = props; // Деструктуризація пропсів
 
   // Функція для оновлення сенсора
-  function updateSensor(draftState: (draftMapping: Sensor) => void) {
+  function updateSensor(draftState: (draftMapping: SensorType) => void) {
     const updatedMapping = produce(sensor, draftState); // Використовуємо produce для оновлення сенсора
 
     onChange(updatedMapping, index); // Викликаємо onChange з оновленим сенсором і його індексом
@@ -30,7 +30,7 @@ export const EditorSensorItem: React.FC<Props> = (props: Props) => {
       {/* Відображення номера сенсора з кнопкою для видалення */}
       <HorizontalGroup>
         Sensor {props.index + 1}
-        <IconButton aria-label="qwe2" name="trash-alt" size="sm" onClick={() => onDelete(index)} />
+        <IconButton aria-label="sens" name="trash-alt" size="sm" onClick={() => onDelete(index)} />
       </HorizontalGroup>
 
       {/* <HorizontalGroup> */}

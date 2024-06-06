@@ -71,7 +71,7 @@ export const MappingsInput: React.FC<MappingsInputProps> = ({ mappings, onChange
 
   // Перевіряє чи є маппінг недійсним
   const invalidMapping = () => {
-    return mappings.includes(newMapping) || newMapping.length === 0;
+    return mappings.includes(newMapping);
   };
 
   // Генерує повідомлення про помилку для недійсного маппінга

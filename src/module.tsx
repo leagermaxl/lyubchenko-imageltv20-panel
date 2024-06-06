@@ -18,18 +18,17 @@ export const plugin = new PanelPlugin<SimpleOptions>(ImageltPanel).setPanelOptio
     .addBooleanSwitch({
       path: 'forceImageRefresh',
       name: 'Force image refresh',
-      description:
-        'Enable to force image refresh when data changes. Use only if cache control is not possible. Check readme on Github if not sure.',
+      description: 'Enable to force image refresh when data changes. Use only if cache control is not possible.',
       defaultValue: false,
     })
-    // Додавання перемикачу для опції Lock sensors movement (блокування переміщення метрик)
+    // Додавання перемикачу для опції Lock sensors movement (блокування переміщення сенсорів)
     .addBooleanSwitch({
       path: 'lockSensors',
       name: 'Lock sensors movement',
       defaultValue: false,
       category: ['Sensors'],
     })
-    // Додавання числового поля вводу для опції Sensors text size (розмір тексту метрик)
+    // Додавання числового поля вводу для опції Sensors text size (розмір тексту сенсорів)
     .addNumberInput({
       path: 'sensorsTextSize',
       name: 'Sensors text size',
@@ -45,9 +44,9 @@ export const plugin = new PanelPlugin<SimpleOptions>(ImageltPanel).setPanelOptio
       description: 'List of sensors',
       category: ['Sensors'],
       defaultValue: [],
-      editor: EditorSensorList, // UI для редагування списку sensors (метрик)
+      editor: EditorSensorList, // UI для редагування списку sensors (сенсорів)
     })
-    // Додавання власного редактору для опцій mappings (системи реагування)
+    // Додавання власного редактору для опцій mappings (маппінгів)
     .addCustomEditor({
       id: 'mappings',
       path: 'mappings',
@@ -55,7 +54,7 @@ export const plugin = new PanelPlugin<SimpleOptions>(ImageltPanel).setPanelOptio
       description: 'List of mappings',
       category: ['Mappings'],
       defaultValue: [],
-      editor: EditorMappingList, // UI для редагування списку mappings (системи реагування)
+      editor: EditorMappingList, // UI для редагування списку mappings (маппінгів)
     });
 
   return panelOptionsBuilder;

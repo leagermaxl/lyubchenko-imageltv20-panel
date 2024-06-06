@@ -1,5 +1,5 @@
-// Оголошення типу Sensor для опису сенсора
-type Sensor = {
+// Оголошення типу SensorType для опису сенсора
+type SensorType = {
   visible: boolean; // Видимість сенсора
   name: string; // Назва сенсора
   query: {
@@ -9,9 +9,9 @@ type Sensor = {
   backgroundColor: string; // Колір фону сенсора
   fontColor: string; // Колір шрифту сенсора
   bold: boolean; // Жирний шрифт
-  valueBlink: boolean; // Миготіння значення
+  valueBlink: boolean; // Блимання тексту сенсора
   iconName: string; // Ім'я іконки
-  backgroundBlink: boolean; // Миготіння фону
+  backgroundBlink: boolean; // Блимання фону сенсора
   link: string; // Посилання, пов'язане з сенсором
   position: {
     x: number; // Позиція сенсора по осі X
@@ -23,4 +23,4 @@ type Sensor = {
 };
 
 // Експорт типу Sensor за замовчуванням
-export default Sensor;
+export default SensorType;

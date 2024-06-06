@@ -2,14 +2,14 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { useStyles2, Button } from '@grafana/ui';
 import { EditorSensorItem } from './EditorSensorItem';
-import Sensor from '../types/Sensor';
+import SensorType from '../types/SensorType';
 import { GrafanaTheme2, StandardEditorProps } from '@grafana/data';
 
 // Оголошуємо інтерфейс Props, який розширює StandardEditorProps з типом даних Sensor[]
-interface Props extends StandardEditorProps<Sensor[]> {}
+interface Props extends StandardEditorProps<SensorType[]> {}
 
 // Встановлюємо значення за замовчуванням для нового сенсора
-const defaultNewSensor: Sensor = {
+const defaultNewSensor: SensorType = {
   name: 'Name', // Назва сенсора
   query: {
     id: 'A', // Ідентифікатор запиту
@@ -40,7 +40,7 @@ export const EditorSensorList: React.FC<Props> = (props: Props) => {
   const styles = useStyles2(getStyles); // Використовуємо кастомні стилі
 
   // Функція для обробки змін сенсора
-  const onSensorChange = (sensor: Sensor, index: number) => {
+  const onSensorChange = (sensor: SensorType, index: number) => {
     sensors[index] = sensor; // Оновлюємо сенсор у масиві за індексом
 
     onChange(sensors); // Викликаємо onChange з оновленим масивом сенсорів
@@ -64,7 +64,7 @@ export const EditorSensorList: React.FC<Props> = (props: Props) => {
     <>
       {/* Відображення списку існуючих sensors */}
       {sensors &&
-        sensors.map((sensor: Sensor, index: number) => {
+        sensors.map((sensor: SensorType, index: number) => {
           return (
             <div className={styles.sensorItemWrapperStyle} key={index}>
               <EditorSensorItem sensor={sensor} onChange={onSensorChange} onDelete={onSensorDelete} index={index} />

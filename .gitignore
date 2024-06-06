@@ -37,3 +37,10 @@ ci/
 .idea
 
 .eslintcache
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests-examples/
+/e2e/
+playwright.yml

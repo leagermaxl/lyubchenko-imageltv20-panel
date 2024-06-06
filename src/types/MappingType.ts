@@ -1,17 +1,17 @@
-// Оголошення типу Mapping для опису маппінгу
-export type Mapping = {
+// Оголошення типу MappingType для опису маппінгу
+export type MappingType = {
   id: string; // Унікальний ідентифікатор маппінгу
   description: string; // Опис маппінгу
   operator: MappingOperator['id']; // Ідентифікатор оператора маппінгу
   compareTo: number | string; // Значення для порівняння
 
   values: {
-    fontColor: string; // Колір шрифту
-    backgroundColor: string; // Колір фону
-    visible: boolean; // Видимість
+    fontColor: string; // Колір шрифту маппінгу
+    backgroundColor: string; // Колір фону маппінгу
+    visible: boolean; // Видимість маппінгу
     bold: boolean; // Жирний шрифт
-    valueBlink: boolean; // Миготіння значення
-    backgroundBlink: boolean; // Миготіння фону
+    valueBlink: boolean; // Блимання тексту
+    backgroundBlink: boolean; // Блимання фону
     overrideValue?: string; // Перезапис значення (необов'язкове)
   };
 };
